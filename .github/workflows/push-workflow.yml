@@ -33,7 +33,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ghcr.io/eryx666/SocialDev.io:${{ matrix.dir }}
+            ghcr.io/eryx666/socialdev.io:${{ matrix.dir }}
   #   runs-on: ubuntu-latest
   #   env:
   #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: friends
-          image: pi.eryx.local:5000/friends
+          image: ghcr.io/eryx666/socialdev.io/friends
           env:
             - name: NATS_CLIENT_ID
               valueFrom:

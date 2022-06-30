@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: comments
-          image: pi.eryx.local:5000/comments
+          image: ghcr.io/eryx666/socialdev.io/comments
           env:
             - name: NATS_CLIENT_ID
               valueFrom:

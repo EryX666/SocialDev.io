@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: profiles
-          image: pi.eryx.local:5000/profiles
+          image: ghcr.io/eryx666/socialdev.io/profiles
           env:
             - name: NATS_CLIENT_ID
               valueFrom:

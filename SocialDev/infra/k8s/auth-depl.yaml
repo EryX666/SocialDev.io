@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: pi.eryx.local:5000/auth
+          image: ghcr.io/eryx666/socialdev.io/auth
           env:
             - name: NATS_CLIENT_ID
               valueFrom:

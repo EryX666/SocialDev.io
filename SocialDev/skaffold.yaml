@@ -8,9 +8,9 @@ build:
   insecureRegistries:
     - pi.eryx.local:5000/
   local:
-    push: true
+    push: false
   artifacts:
-    - image: pi.eryx.local:5000/auth
+    - image: ghcr.io/eryx666/socialdev.io/auth
       context: auth
       docker:
         dockerfile: Dockerfile
@@ -18,7 +18,7 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: pi.eryx.local:5000/profiles
+    - image: ghcr.io/eryx666/socialdev.io/profiles
       context: profiles
       docker:
         dockerfile: Dockerfile
@@ -26,7 +26,7 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: pi.eryx.local:5000/posts
+    - image: ghcr.io/eryx666/socialdev.io/posts
       context: posts
       docker:
         dockerfile: Dockerfile
@@ -34,7 +34,7 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: pi.eryx.local:5000/comments
+    - image: ghcr.io/eryx666/socialdev.io/comments
       context: comments
       docker:
         dockerfile: Dockerfile
@@ -42,7 +42,7 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: pi.eryx.local:5000/friends
+    - image: ghcr.io/eryx666/socialdev.io/friends
       context: friends
       docker:
         dockerfile: Dockerfile

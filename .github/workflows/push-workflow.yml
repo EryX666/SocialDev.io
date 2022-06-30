@@ -8,7 +8,6 @@ on:
 
 jobs:
   build-and-push-docker-images:
-    needs: publish-common
     name: matrix push
     runs-on: ubuntu-latest
     strategy:

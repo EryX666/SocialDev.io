@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - common/**
   workflow_dispatch:
 
 jobs:

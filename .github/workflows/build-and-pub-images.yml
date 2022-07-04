@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - SocialDev/**
   workflow_dispatch:
 
 jobs:

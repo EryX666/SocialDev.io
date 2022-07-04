@@ -32,13 +32,17 @@ jobs:
 
       - name: Install
         run: npm ci
+        working-directory: ./common
 
       - name: Build package
         run: npm run build
+        working-directory: ./common
 
       - name: Update package.json
         run: jq '.main = "./dist/index.js"' package.json > package.json.tmp && mv package.json.tmp package.json
+        working-directory: ./common
 
       - name: Publish
         run: |
           npm publish --ignore-scripts --access public
+        working-directory: ./common

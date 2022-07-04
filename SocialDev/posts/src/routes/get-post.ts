@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { requireAuth } from "@obiproduction/socialnet-api-common";
+import { requireAuth } from "socialdev-common";
 import { Posts } from "../models/Posts";
 
 const router = express.Router();

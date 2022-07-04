@@ -4,11 +4,7 @@ import cookieSession from "cookie-session";
 import cors from "cors";
 import { json } from "body-parser";
 import morgan from "morgan";
-import {
-	errorHandler,
-	NotFoundError,
-	currentUser,
-} from "@obiproduction/socialnet-api-common";
+import { errorHandler, NotFoundError, currentUser } from "socialdev-common";
 
 import { CreatePostRouter } from "./routes/create-post";
 import { GetPostRouter } from "./routes/get-post";

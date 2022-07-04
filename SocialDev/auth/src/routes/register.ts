@@ -1,9 +1,6 @@
 import express, { Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import {
-	validateRequest,
-	BadRequestError,
-} from "@obiproduction/socialnet-api-common";
+import { validateRequest, BadRequestError } from "socialdev-common";
 import { User } from "../models/user";
 import { signupValidation } from "../utilities/validation/validate";
 import { UserCreatedPublisher } from "../events/publishers/user-created-publisher";

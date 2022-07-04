@@ -1,9 +1,6 @@
 import express, { Request, Response } from "express";
 import { Profiles } from "../models/profiles";
-import {
-	requireAuth,
-	validateRequest,
-} from "@obiproduction/socialnet-api-common";
+import { requireAuth, validateRequest } from "socialdev-common";
 import { editProfileValidation } from "../utilities/validation/validate";
 
 const router = express.Router();
@@ -110,15 +107,8 @@ router.post(
 	requireAuth,
 	async (req: Request, res: Response) => {
 		const { id: userId } = req.currentUser!;
-		const {
-			title,
-			company,
-			location,
-			from,
-			to,
-			current,
-			description,
-		} = req.body.experience;
+		const { title, company, location, from, to, current, description } =
+			req.body.experience;
 
 		const experience = {
 			title,
@@ -158,15 +148,8 @@ router.put(
 		const { id: userId } = req.currentUser!;
 		const { experience_id: expId } = req.params;
 
-		const {
-			title,
-			company,
-			location,
-			from,
-			to,
-			current,
-			description,
-		} = req.body;
+		const { title, company, location, from, to, current, description } =
+			req.body;
 
 		const newExperience = {
 			_id: "",

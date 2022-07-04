@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 
-import { currentUser } from "@obiproduction/socialnet-api-common";
+import { currentUser } from "socialdev-common";
 
 const router = express.Router();
 

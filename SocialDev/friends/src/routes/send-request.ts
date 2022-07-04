@@ -4,7 +4,7 @@ import {
 	NotFoundError,
 	indexOfObjectInArray,
 	objectInArray,
-} from "@obiproduction/socialnet-api-common";
+} from "socialdev-common";
 import { Friends } from "../models/Friends";
 
 const router = express.Router();

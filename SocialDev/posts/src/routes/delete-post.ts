@@ -1,8 +1,5 @@
 import express, { Request, Response } from "express";
-import {
-	requireAuth,
-	NotAuthorizedError,
-} from "@obiproduction/socialnet-api-common";
+import { requireAuth, NotAuthorizedError } from "socialdev-common";
 import { Posts } from "../models/Posts";
 import { PostDeletedPublisher } from "../events/publishers/post-deleted-publisher";
 import { natsWrapper } from "../nats-wrapper";

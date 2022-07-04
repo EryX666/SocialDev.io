@@ -3,7 +3,7 @@ import {
 	requireAuth,
 	NotAuthorizedError,
 	validateRequest,
-} from "@obiproduction/socialnet-api-common";
+} from "socialdev-common";
 import { Posts } from "../models/Posts";
 import { editPostValidation } from "../utilities/validators";
 

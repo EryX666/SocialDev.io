@@ -4,10 +4,7 @@ import jwt from "jsonwebtoken";
 import { Password } from "../services/password";
 
 import { loginValidation } from "../utilities/validation/validate";
-import {
-	validateRequest,
-	BadRequestError,
-} from "@obiproduction/socialnet-api-common";
+import { validateRequest, BadRequestError } from "socialdev-common";
 import { User } from "../models/user";
 
 const router = express.Router();

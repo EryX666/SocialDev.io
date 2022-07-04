@@ -1,8 +1,5 @@
 import express, { Request, Response } from "express";
-import {
-	requireAuth,
-	validateRequest,
-} from "@obiproduction/socialnet-api-common";
+import { requireAuth, validateRequest } from "socialdev-common";
 import { Posts } from "../models/Posts";
 import { createPostValidation } from "../utilities/validators";
 import { PostCreatedPublisher } from "../events/publishers/post-created-publisher";

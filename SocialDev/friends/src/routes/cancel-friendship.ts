@@ -110,7 +110,7 @@ import {
 	BadRequestError,
 	indexOfObjectInArray,
 	objectInArray,
-} from "@obiproduction/socialnet-api-common";
+} from "socialdev-common";
 import { Friends } from "../models/Friends";
 
 const router = express.Router();
@@ -193,13 +193,11 @@ router.delete(
 				userB_FriendsList.splice(userB_FriendshipIndex!, 1);
 				await userA!.save();
 				await userB!.save();
-				res
-					.status(201)
-					.json({
-						success: true,
-						userA: userA_FriendsList,
-						userB: userB_FriendsList,
-					});
+				res.status(201).json({
+					success: true,
+					userA: userA_FriendsList,
+					userB: userB_FriendsList,
+				});
 			} else if (userA_RequestInSentArray) {
 				const userA_RequestIndex = indexOfObjectInArray(
 					userA_SentRequests,
@@ -226,13 +224,11 @@ router.delete(
 				userB_FriendsList.splice(userB_FriendshipIndex!, 1);
 				await userA!.save();
 				await userB!.save();
-				res
-					.status(201)
-					.json({
-						success: true,
-						userA: userA_FriendsList,
-						userB: userB_FriendsList,
-					});
+				res.status(201).json({
+					success: true,
+					userA: userA_FriendsList,
+					userB: userB_FriendsList,
+				});
 			} else {
 				throw new BadRequestError("Something went wrong...");
 			}

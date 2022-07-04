@@ -1,9 +1,5 @@
 import { Message } from "node-nats-streaming";
-import {
-	Subjects,
-	Listener,
-	PostDeletedEvent,
-} from "@obiproduction/socialnet-api-common";
+import { Subjects, Listener, PostDeletedEvent } from "socialdev-common";
 import { Comments } from "../../models/comments";
 import { queueGroupName } from "./queue-group-name";
 

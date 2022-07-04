@@ -1,8 +1,5 @@
 import express, { Request, Response } from "express";
-import {
-	requireAuth,
-	NotFoundError,
-} from "@obiproduction/socialnet-api-common";
+import { requireAuth, NotFoundError } from "socialdev-common";
 import { Profiles } from "../models/profiles";
 
 const router = express.Router();

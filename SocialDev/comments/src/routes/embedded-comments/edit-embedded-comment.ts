@@ -3,7 +3,7 @@ import {
 	requireAuth,
 	NotFoundError,
 	NotAuthorizedError,
-} from "@obiproduction/socialnet-api-common";
+} from "socialdev-common";
 import { Comments } from "../../models/comments";
 
 const router = express.Router();

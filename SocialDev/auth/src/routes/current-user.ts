@@ -4,7 +4,7 @@ import { currentUser } from "socialdev-common";
 
 const router = express.Router();
 
-// Route        ---> POST api/auth/currentuser
+// Route        ---> GET api/auth/currentuser
 // Description  ---> Return the current logged in user based on JWT or null
 // Access       ---> Public
 router.get("/currentuser", currentUser, (req: Request, res: Response) => {

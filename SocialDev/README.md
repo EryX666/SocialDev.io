@@ -2,7 +2,6 @@
 Socialdev.io is a mock implementation of a social network such as facebook/twitter/instagram but for code developers.
 The backend is built using microservices architecture such that every service doesnt affects the rest of the API and has 0 knowladge or ties to the other services and runs completly on its own accord.
 
-<<<<<<< HEAD
 ##Prerequisites
 ###running locally:
 - Docker desktop with the Kubernetes setting on
@@ -98,6 +97,3 @@ this is the service running the react front-end, it is still a work in progress.
 
 ## How to run in cloud
 First we need to change
-=======
-# This repo is in active development!
->>>>>>> 2cb35178dab591d959d4a8b9e3241c2cdfa07fab

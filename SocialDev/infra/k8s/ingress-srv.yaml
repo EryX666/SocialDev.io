@@ -8,8 +8,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
-    - host: socialdev.io
-      http:
+    - http:
         paths:
           - path: /api/auth/?(.*)
             pathType: Prefix

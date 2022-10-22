@@ -35,46 +35,62 @@ The Comments service handles everything that has to di with comments, either on 
 
 |		Route							|		Type			|		Description		|		Returns								|
 |		:----------:					|		:------:		|		:------:		|		:-------:							|
-|		/:post_id/comment/create		|		POST			|Creates a new comment	|		{success: true, newComment} / Error				|
-|		/:post_id/comment/:comment_id/delete	|		POST	|Deletes a comment		|		|
-|		signin							|		POST			|a|a|
-|		signout							|		POST			|a|	A	|
+|/:post_id/comment/create				|		POST			|Creates a new comment	|		{success: true, newComment} / Error				|
+|/:post_id/comment/:comment_id/delete	|		DELETE			|Deletes a comment		|		{commentSection} after deletion / Error|
+|/:post_id/comment/:comment_id/edit		|		PUT				|Edit a comment on a post|{ success: true, newComment } / Error|
+|/:post_id/comment/:comment_id/like		|		POST			|Like or unlike a comment|	{ success: true, newComment} / Error	|
+
+##### Embedded comments
+this routes site under the comments service as a sub-service handling whats known as "embedded comment" - comments on comments just like in facebook where you have a comment heirarchy tree
+
+|		Route							|		Type			|		Description		|		Returns								|
+|		:----------:					|		:------:		|		:------:		|		:-------:							|
+|/:post_id/comment/:comment_id/embedded/create|		POST	|Creates a new embedded comment - a comment on a comment|{success: true, newComment} / Error|
+|/:post_id/comment/:comment_id/embedded/deletee	|	DELETE	|	Deletes an embedded comment	|{success: true, embdCommentsArray} / Error|
+|/:post_id/comment/:comment_id/embedded/edit	|		PUT				|Edit an embedded comment|{success: true, embdCommentsArray} / Error|
+|/:post_id/comment/:comment_id/embedded/like	|		POST			|Like or unlike an embedded comment|{success: true, embdCommentsArray} / Error	|
+
 
 ### Friends Service
 The Friends service handles the social aspect of the app, adding friends, removing friends, managing friend requests etc.
 
 ``api/friends/*``
 
-|		Route				|		Type			|		Returns								|
-|		:----------:		|		:------:		|		:-------:							|
-|		currentuser			|		GET				|		Current logged in user / null		|
-|		register			|		POST			|		JWT user token						|
-|		signin				|		POST			|		JWT user token						|
-|		signout				|		POST			|		null								|
+|		Route				|		Type			|		Description		|		Returns								|
+|		:----------:		|		:------:		|		:------:		|		:-------:							|
+|	/answer_friend_request/:userA_Id/:answer	|	POST	|	User B answer to User A friend request	|{ success: true, userA, userB } / Error|
+|	/cancel_friendship/:userB_id	|	POST	|	User A cancel a friendship with User B	|{success: true, userA: userA_FriendsList, userB: userB_FriendsList }|
+|	/send_friend_request/:userB_id	|	POST	|User A sends a friend request to User B / User A unsends a sent request to User B|{success: true/false, message: "Friend request sent/unsent successfully"}|
+|	/:user_id/friends_list	|	GET	|Get friends list by user_id|		[{friend1}, {friend2}] / [] 		|
+|	/sent_requests_list	|	GET	|Get current user sent friend-request list|		[{sentRequest1}, {sentRequest2}] / []		|
+|	/:user_id/received_requests_list	|	GET	|Get current user received friend-requests list|		[{receivedRequest1}, {receivedRequest2}] / []		|
 
 ### Posts Service
 The Posts service handles the user posts, from creating a post, deleting posts, getting a list of posts by user and so on.
 
 ``api/posts/*``
 
-|		Route				|		Type			|		Returns								|
-|		:----------:		|		:------:		|		:-------:							|
-|		currentuser			|		GET				|		Current logged in user / null		|
-|		register			|		POST			|		JWT user token						|
-|		signin				|		POST			|		JWT user token						|
-|		signout				|		POST			|		null								|
+|		Route				|		Type			|		Description		|		Returns								|
+|		:----------:		|		:------:		|		:------:		|		:-------:							|
+|		/create				|		POST			|Creates a new user post|		{sucess: true/false, newPost?}		|
+|		/:post_id/delete	|		DELETE			|	Delete a user post	|	{ success: true/false, deletedPost }	|
+|		/:post_id/edit		|		PUT				|	Edit a user post	|	{ success: true/false, updatedPost }	|
+|		/:post_id/like		|		POST			|Like/Unlike a user post|				{post}						|
+|		/:post_id			|		GET				|Get a post by its Id	|				{post}						|
+|		/					|		GET				|Gets all posts in DB	|				{posts}						|
 
 ### Profiles Service
 The Profiles service handles the user profile, editing the profile, and updating the profile info.
 
 ``api/profile/*``
 
-|		Route				|		Type			|		Returns								|
-|		:----------:		|		:------:		|		:-------:							|
-|		currentuser			|		GET				|		Current logged in user / null		|
-|		register			|		POST			|		JWT user token						|
-|		signin				|		POST			|		JWT user token						|
-|		signout				|		POST			|		null								|
+|		Route					|		Type			|		Description								|		Returns			|
+|		:----------:			|		:------:		|		:------:								|		:-------:		|
+|		/current				|		GET				|		Returns current profile					|		{profile}		|
+|		/edit					|		PUT				|		Edits current profile					|		{profile}		|
+|		/experience/add			|		POST			|		Adds a new experience					|		{profile}		|
+|/experience/:experience_id/edit|		PUT				|		Edit an experience based on its Id		|		{profile}		|
+|/experience/:experience_id/delete|		DELETE			|		Delete experience based on its Id		|		{NewProfile}	|
 
 ### Client Service
 this is the service running the react front-end, it is still a work in progress.

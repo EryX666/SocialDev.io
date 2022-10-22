@@ -50,11 +50,3 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: pi.eryx.local:5000/client
-      context: client
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: "src/**/*.js"
-            dest: .

@@ -5,8 +5,8 @@ on:
     branches:
       - main
     paths:
-      - SocialDev/**
-      - "!README.md"
+      - "SocialDev/**"
+      - "!SocialDev/README.md"
   workflow_dispatch:
 
 jobs:

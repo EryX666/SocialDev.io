@@ -2,16 +2,16 @@
 Socialdev.io is a mock implementation of a social network such as facebook/twitter/instagram but for code developers.
 The backend is built using microservices architecture such that every service doesnt affects the rest of the API and has 0 knowladge or ties to the other services and runs completly on its own accord.
 
-##Prerequisites
-###running locally:
+## Prerequisites
+### running locally:
 - Docker desktop with the Kubernetes setting on
 - Skaffold installed
 - A running MongoDB database(i used MongoDB Atlas cloud service)
 
-###running in cloud:
+### running in cloud:
 - check out this section [How to run in cloud]()
 
-##install
+## install
 
 
 

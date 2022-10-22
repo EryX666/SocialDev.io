@@ -2,16 +2,16 @@
 Socialdev.io is a mock implementation of a social network such as facebook/twitter/instagram but for code developers.
 The backend is built using microservices architecture such that every service doesnt affects the rest of the API and has 0 knowladge or ties to the other services and runs completly on its own accord.
 
-## Prerequisites
-### running locally:
+##Prerequisites
+###running locally:
 - Docker desktop with the Kubernetes setting on
 - Skaffold installed
 - A running MongoDB database(i used MongoDB Atlas cloud service)
 
-### running in cloud:
+###running in cloud:
 - check out this section [How to run in cloud]()
 
-## install
+##install
 
 
 
@@ -91,9 +91,14 @@ The Profiles service handles the user profile, editing the profile, and updating
 |		/experience/add			|		POST			|		Adds a new experience					|		{profile}		|
 |/experience/:experience_id/edit|		PUT				|		Edit an experience based on its Id		|		{profile}		|
 |/experience/:experience_id/delete|		DELETE			|		Delete experience based on its Id		|		{NewProfile}	|
+|		/handle/:handle			|		GET				|		Get profile by handle					|		{profile}		|
+|			/:user_id			|		GET				|		Get profile by user_id					|		{profile}		|
+|				/				|		GET				|		Get all profiles in DB					|		{profiles}		|
+
 
 ### Client Service
 this is the service running the react front-end, it is still a work in progress.
 
 ## How to run in cloud
 First we need to change
+

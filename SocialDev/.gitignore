@@ -119,5 +119,4 @@ dist
 # Custom ignores
 front-end-workspace.code-workspace
 *.xml
-/client
 port-reminder

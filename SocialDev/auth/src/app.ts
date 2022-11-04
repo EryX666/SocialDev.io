@@ -23,7 +23,7 @@ app.use(
 		name: "session",
 		signed: false,
 		// Change secure in Production to 'true' to only send cookies on HTTPS
-		secure: true,
+		secure: false,
 	})
 );
 

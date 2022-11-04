@@ -48,6 +48,22 @@ router.post(
 			jwt: userJwt,
 		};
 
+		const date = new Date().toLocaleString();
+		console.log(date);
+
+		const checkFirstConnection = await existingUser.log.length;
+		if (checkFirstConnection <= 0) {
+			console.log("first connection");
+			await existingUser.log.push({ date: date, firstConnection: true });
+			console.log(existingUser);
+			await existingUser.save();
+		} else {
+			console.log("not first time");
+			await existingUser.log.push({ date: date });
+			console.log(existingUser);
+			await existingUser.save();
+		}
+
 		res.status(200).send(existingUser);
 	}
 );

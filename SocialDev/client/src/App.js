@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home";
@@ -10,11 +10,9 @@ function App() {
 	return (
 		<Router>
 			<Navbar />
-			<Switch>
-				<Route exact path="/">
-					<Home />
-				</Route>
-			</Switch>
+			<Routes>
+				<Route exact path="/" element={<Home />} />
+			</Routes>
 		</Router>
 	);
 }

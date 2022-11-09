@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { authSelector } from "stateStore/slices/authSlice";
 
 // MUI
 import { ThemeProvider, useTheme, createTheme } from "@mui/material/styles";
@@ -23,11 +21,9 @@ const darkTheme = createTheme({
 	},
 });
 
-export default function Navbar() {
-	const { loggedIn } = useSelector(authSelector);
+export default function Navbar({ loggedIn }) {
 	const [modalShow, setModalShow] = useState(false);
 
-	useEffect(() => {}, [loggedIn]);
 	return (
 		<>
 			<ThemeProvider theme={darkTheme}>

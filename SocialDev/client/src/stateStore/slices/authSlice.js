@@ -5,9 +5,9 @@ import { userRegister } from "stateStore/reducers/userRegister";
 
 const initialState = {
 	loggedIn: false,
-	isSuccess: false,
-	isFetching: false,
-	isError: false,
+	isSuccess: null,
+	isFetching: null,
+	isError: null,
 	errorMessage: null,
 	id: null,
 	email: null,
@@ -19,9 +19,9 @@ export const authSlice = createSlice({
 	initialState,
 	reducers: {
 		clearState: (state) => {
-			state.isSuccess = false;
-			state.isFetching = false;
-			state.isError = false;
+			state.isSuccess = null;
+			state.isFetching = null;
+			state.isError = null;
 
 			return state;
 		},
@@ -50,10 +50,12 @@ export const authSlice = createSlice({
 		},
 		[currentUser.pending]: (state) => {
 			state.isFetching = true;
+			state.isSuccess = false;
 
 			return state;
 		},
 		[currentUser.rejected]: (state, { payload }) => {
+			state.isSuccess = false;
 			state.isFetching = false;
 			state.isError = true;
 			state.errorMessage = payload.message;
@@ -61,7 +63,6 @@ export const authSlice = createSlice({
 			return state;
 		},
 		[userLogin.fulfilled]: (state, { payload }) => {
-			console.log("payload", payload);
 			state.loggedIn = true;
 			state.isFetching = false;
 			state.isSuccess = true;
@@ -79,7 +80,6 @@ export const authSlice = createSlice({
 			return state;
 		},
 		[userLogin.rejected]: (state, { payload }) => {
-			console.log("payload", payload);
 			state.isFetching = false;
 			state.isError = true;
 			state.errorMessage = payload;
@@ -87,7 +87,6 @@ export const authSlice = createSlice({
 			return state;
 		},
 		[userRegister.fulfilled]: (state, { payload }) => {
-			console.log("payload", payload);
 			state.loggedIn = true;
 			state.isFetching = false;
 			state.isSuccess = true;
@@ -107,7 +106,6 @@ export const authSlice = createSlice({
 			return state;
 		},
 		[userRegister.rejected]: (state, { payload }) => {
-			console.log("payload", payload);
 			state.isFetching = false;
 			state.isError = true;
 			state.errorMessage = payload.message;

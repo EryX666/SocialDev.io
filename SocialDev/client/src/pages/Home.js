@@ -9,14 +9,14 @@ const Home = () => {
 	useEffect(() => {}, [loggedIn]);
 	return (
 		<>
-			{!loggedIn && (
-				<div className="container">
-					<header className="jumbotron">
-						<h1>Home</h1>
-					</header>
-				</div>
-			)}
-			{loggedIn && <FeedWall />}
+			{/* {!loggedIn && ( */}
+			<div className="container">
+				<header className="jumbotron">
+					<h1 className="text-3xl font-bold underline">Home</h1>
+				</header>
+			</div>
+			{/* )} */}
+			{/* {loggedIn && <FeedWall />} */}
 		</>
 	);
 };

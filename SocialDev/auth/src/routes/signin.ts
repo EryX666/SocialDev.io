@@ -9,7 +9,7 @@ import { User } from "../models/user";
 
 const router = express.Router();
 
-// Route        ---> POST api/users/signin
+// Route        ---> POST api/auth/signin
 // Description  ---> Sign in a registered user
 // Access       ---> Public
 router.post(
@@ -53,14 +53,10 @@ router.post(
 
 		const checkFirstConnection = await existingUser.log.length;
 		if (checkFirstConnection <= 0) {
-			console.log("first connection");
 			await existingUser.log.push({ date: date, firstConnection: true });
-			console.log(existingUser);
 			await existingUser.save();
 		} else {
-			console.log("not first time");
 			await existingUser.log.push({ date: date });
-			console.log(existingUser);
 			await existingUser.save();
 		}
 

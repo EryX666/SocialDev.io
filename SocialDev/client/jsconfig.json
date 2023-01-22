@@ -1,6 +1,19 @@
 {
 	"compilerOptions": {
-		"baseUrl": "src"
+		"baseUrl": "src",
+		"paths": {
+			"assets": ["./src/assets"],
+			"components": ["./src/components"],
+			"data": ["./src/data"],
+			"features": ["./src/features"],
+			"hooks": ["./src/hook"],
+			"layouts": ["./src/layouts"],
+			"lib": ["./src/lib"],
+			"pages": ["./src/pages"],
+			"services": ["./src/services"],
+			"store": ["./src/stateStore"],
+			"utils": ["./src/utils"]
+		}
 	},
 	"include": ["src"]
 }

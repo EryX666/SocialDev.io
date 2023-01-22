@@ -31,6 +31,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.4.2",
     "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
     "node-nats-streaming": "^0.3.2",
     "socialdev-common": "^1.0.2",
     "ts-node-dev": "^2.0.0",
@@ -39,6 +40,7 @@
   "devDependencies": {
     "@types/express-validator": "^3.0.0",
     "@types/jest": "^27.0.1",
+    "@types/multer": "^1.4.7",
     "@types/supertest": "^2.0.11",
     "jest": "^27.1.0",
     "mongodb-memory-server": "^7.3.6",

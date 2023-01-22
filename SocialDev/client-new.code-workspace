@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "client-new"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"workbench.colorCustomizations": {}
+	}
+}

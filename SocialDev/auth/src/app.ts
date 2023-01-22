@@ -4,7 +4,7 @@ import cookieSession from "cookie-session";
 import { json } from "body-parser";
 import morgan from "morgan";
 import cors from "cors";
-import { errorHandler, NotFoundError } from "socialdev-common";
+import { errorHandler, NotFoundError, currentUser } from "socialdev-common";
 
 import { currentUserRouter } from "./routes/current-user";
 import { signinRouter } from "./routes/signin";
@@ -24,8 +24,11 @@ app.use(
 		signed: false,
 		// Change secure in Production to 'true' to only send cookies on HTTPS
 		secure: false,
+		httpOnly: false,
 	})
 );
+
+app.use(currentUser);
 
 // Routes
 // /api/service/:params.../action

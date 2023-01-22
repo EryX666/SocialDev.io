@@ -1,60 +1,77 @@
-apiVersion: skaffold/v2beta10
+apiVersion: skaffold/v4beta1
 kind: Config
-deploy:
-  kubectl:
-    manifests:
-      - ./infra/k8s/*
 build:
+  artifacts:
+    - image: ghcr.io/eryx666/socialdev.io/auth
+      context: auth
+      sync:
+        manual:
+          - src: src/**/*.ts
+            dest: .
+      docker:
+        dockerfile: Dockerfile
+    - image: ghcr.io/eryx666/socialdev.io/profiles
+      context: profiles
+      sync:
+        manual:
+          - src: src/**/*.ts
+            dest: .
+      docker:
+        dockerfile: Dockerfile
+    - image: ghcr.io/eryx666/socialdev.io/posts
+      context: posts
+      sync:
+        manual:
+          - src: src/**/*.ts
+            dest: .
+      docker:
+        dockerfile: Dockerfile
+    - image: ghcr.io/eryx666/socialdev.io/comments
+      context: comments
+      sync:
+        manual:
+          - src: src/**/*.ts
+            dest: .
+      docker:
+        dockerfile: Dockerfile
+    - image: ghcr.io/eryx666/socialdev.io/friends
+      context: friends
+      sync:
+        manual:
+          - src: src/**/*.ts
+            dest: .
+      docker:
+        dockerfile: Dockerfile
+    - image: pi.eryx.local:5000/client-new
+      context: client-new
+      sync:
+        manual:
+          - src: src/**/*.ts
+            dest: .
+          - src: src/**/*.tsx
+            dest: .
+          - src: src/**/*.css
+            dest: .
+          - src: src/**/*.jpg
+            dest: .
+      docker:
+        dockerfile: Dockerfile
   insecureRegistries:
     - pi.eryx.local:5000/
   local:
     push: false
-  artifacts:
-    - image: ghcr.io/eryx666/socialdev.io/auth
-      context: auth
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: "src/**/*.ts"
-            dest: .
-    - image: ghcr.io/eryx666/socialdev.io/profiles
-      context: profiles
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: "src/**/*.ts"
-            dest: .
-    - image: ghcr.io/eryx666/socialdev.io/posts
-      context: posts
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: "src/**/*.ts"
-            dest: .
-    - image: ghcr.io/eryx666/socialdev.io/comments
-      context: comments
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: "src/**/*.ts"
-            dest: .
-    - image: ghcr.io/eryx666/socialdev.io/friends
-      context: friends
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: "src/**/*.ts"
-            dest: .
-    - image: pi.eryx.local:5000/client
-      context: client
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: "src/**/*.js"
-            dest: .
+# test:
+#   - image: ghcr.io/eryx666/socialdev.io/auth
+#     context: auth
+#     custom:
+#       - command: npm run test
+#         timeoutSeconds: 10
+
+deploy:
+  kubectl: {}
+#     hooks:
+#       before:
+#         - host:
+#             command: ["sh", "-c", "npm run test"]
+#             os: [darwin, linux]
+#             dir: ./auth

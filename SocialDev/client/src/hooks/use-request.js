@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { currentUser } from "stateStore/slices/authSlice";
+import { currentUser } from "stateStore/auth/slices/authSlice";
 
 const useRequest = ({ url, method, body }) => {
 	const dispatch = useDispatch();

@@ -1,19 +1,20 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 
-import Navbar from "./components/Navbar/Navbar";
-import Footer from "./components/Footer/Footer";
-import Home from "./pages/Home";
+import Navbar from "layouts/Navbar/base/Navbar";
+import Home from "pages/Home";
+import FeedWall from "pages/FeedWall";
 
-import "./styles/App.css";
+import "assets/css/App.css";
 
 import { useSelector, useDispatch } from "react-redux";
-import { authSelector, currentUser } from "stateStore/slices/authSlice";
+import { authSelector, currentUser } from "stateStore/auth/slices/authSlice";
 
 function App() {
 	const dispatch = useDispatch();
-	const { loggedIn, isFetching, isError, isSuccess } =
-		useSelector(authSelector);
+	const { loggedIn, isFetching, isSuccess } = useSelector(authSelector);
+	// TODO: add error handling based on isError
+	// const { loggedIn, isFetching, isError, isSuccess } = useSelector(authSelector);
 
 	useEffect(() => {
 		dispatch(currentUser());
@@ -32,9 +33,8 @@ function App() {
 		<Router>
 			<Navbar loggedIn={loggedIn} />
 			<Routes>
-				<Route exact path="/" element={<Home loggedIn={loggedIn} />} />
+				<Route exact path="/" element={loggedIn ? <FeedWall /> : <Home />} />
 			</Routes>
-			<Footer />
 		</Router>
 	);
 }

@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+	.bg-logo {
+		background-image: url("../images/test-logo.jpg");
+		background-repeat: no-repeat;
+		background-size: 140%;
+		background-position: 20% 4%;
+	}
+}
+
+body {
+	background-color: #e5e7eb;
+}

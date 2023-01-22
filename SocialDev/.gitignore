@@ -120,3 +120,4 @@ dist
 front-end-workspace.code-workspace
 *.xml
 port-reminder
+client.code-workspace

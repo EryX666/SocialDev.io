@@ -1,30 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: client-new-depl
+  name: client-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: client-new
+      app: client
   template:
     metadata:
       labels:
-        app: client-new
+        app: client
     spec:
       containers:
-        - name: client-new
-          image: pi.eryx.local:5000/client-new
+        - name: client
+          image: pi.eryx.local:5000/client
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: client-new-srv
+  name: client-srv
 spec:
   selector:
-    app: client-new
+    app: client
   ports:
-    - name: client-new
+    - name: client
       protocol: TCP
       port: 3000
       targetPort: 3000

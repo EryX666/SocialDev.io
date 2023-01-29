@@ -1,4 +1,10 @@
-import React, { useState, Fragment, useContext, useEffect } from "react";
+import React, {
+	useState,
+	Fragment,
+	useContext,
+	useEffect,
+	useRef,
+} from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useCreateNewPost } from "services/internal/postQueries";
 import Avatar from "components/user/Avatar";
@@ -9,6 +15,7 @@ const CreateNewPost: React.FC = () => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const [postText, setPostText] = useState<string>("");
 	const mutation = useCreateNewPost();
+	const cancelButtonRef = useRef(null);
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -49,69 +56,73 @@ const CreateNewPost: React.FC = () => {
 				</span>
 			</div>
 
-			<Transition appear show={isOpen} as={Fragment}>
-				<Dialog as="div" className="relative z-10" onClose={closeModal}>
-					<Transition.Child
-						as={Fragment}
-						enter="ease-out duration-300"
-						enterFrom="opacity-0"
-						enterTo="opacity-100"
-						leave="ease-in duration-200"
-						leaveFrom="opacity-100"
-						leaveTo="opacity-0"
-					>
-						<div className="fixed inset-0 bg-black bg-opacity-25" />
-					</Transition.Child>
-					{/* The backdrop, rendered as a fixed sibling to the panel container */}
-					<div className="fixed inset-0 bg-black/30" aria-hidden="true" />
-
-					{/* Full-screen scrollable container */}
-					<div className="fixed inset-0 overflow-y-auto">
-						{/* Container to center the panel */}
-						<div className="flex min-h-full items-center justify-center p-4">
-							{/* The actual dialog panel  */}
-							<div className="fixed inset-0 overflow-y-auto">
-								<div className="flex min-h-full items-center justify-center p-4 text-center">
-									<Transition.Child
-										as={Fragment}
-										enter="ease-out duration-300"
-										enterFrom="opacity-0 scale-95"
-										enterTo="opacity-100 scale-100"
-										leave="ease-in duration-200"
-										leaveFrom="opacity-100 scale-100"
-										leaveTo="opacity-0 scale-95"
+			<Transition
+				appear
+				show={isOpen}
+				as={Fragment}
+				enter="ease-out duration-300"
+				enterFrom="opacity-0"
+				enterTo="opacity-100"
+				leave="ease-in duration-200"
+				leaveFrom="opacity-100"
+				leaveTo="opacity-0"
+			>
+				<Dialog as="div" className="relative z-50" onClose={closeModal}>
+					<Transition.Child>
+						<div className="fixed inset-0 bg-black/30" aria-hidden="true" />
+						<div className="fixed inset-0 overflow-y-scroll">
+							<div className="flex min-h-full items-center justify-center p-4">
+								<Dialog.Panel className="grid w-full max-w-2xl transform overflow-hidden rounded-2xl dark:bg-gray-700 pt-6 pb-6 text-left align-middle shadow-xl transition-all divide-x">
+									<Dialog.Title
+										as="h3"
+										className="text-lg font-medium leading-6 dark:text-gray-300 text-center"
 									>
-										<Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-											<Dialog.Title
-												as="h3"
-												className="text-lg font-medium leading-6 text-gray-900"
+										Create a new Post
+										<button
+											type="button"
+											className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
+											data-modal-toggle="authentication-modal"
+											onClick={() => closeModal()}
+											ref={cancelButtonRef}
+										>
+											<svg
+												aria-hidden="true"
+												className="w-5 h-5"
+												fill="currentColor"
+												viewBox="0 0 20 20"
+												xmlns="http://www.w3.org/2000/svg"
 											>
-												Create a new Post
-											</Dialog.Title>
-											<form
-												onSubmit={handleSubmit}
-												className="flex flex-col justify-center"
-											>
-												<input
-													className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
-													type="text"
-													value={postText}
-													placeholder={`What do you want to share ${currentUser?.currentUser?.handle}?`}
-													onChange={(e) => setPostText(e.target.value)}
-												/>
-												<button className="bg-green-500" type="submit">
-													Submit
-												</button>
-											</form>
-										</Dialog.Panel>
-									</Transition.Child>
-								</div>
+												<path
+													fillRule="evenodd"
+													d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+													clipRule="evenodd"
+												></path>
+											</svg>
+											<span className="sr-only">Close modal</span>
+										</button>
+									</Dialog.Title>
+									<span className="w-full p-[1px] bg-gray-500"></span>
+									{/* <form
+										onSubmit={handleSubmit}
+										className="flex flex-col justify-center"
+									>
+										<input
+											className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+											type="text"
+											value={postText}
+											placeholder={`What do you want to share ${currentUser?.currentUser?.handle}?`}
+											onChange={(e) => setPostText(e.target.value)}
+										/>
+										<button className="bg-green-500" type="submit">
+											Submit
+										</button>
+									</form> */}
+								</Dialog.Panel>
 							</div>
 						</div>
-					</div>
+					</Transition.Child>
 				</Dialog>
 			</Transition>
-			{/*  */}
 		</div>
 	);
 };

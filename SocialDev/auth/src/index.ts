@@ -32,6 +32,7 @@ const start = async () => {
 		process.on("SIGTERM", () => natsWrapper.client.close());
 
 		await mongoose
+			.set("strictQuery", true)
 			.connect(MONGO_URI)
 			.then(() => console.log("Auth-Service: Connected to MongoDB"))
 			.catch((err) => {

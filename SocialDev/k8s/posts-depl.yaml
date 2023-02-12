@@ -1,20 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: auth-depl
+  name: posts-depl
+  namespace: socialdev
+  labels:
+    app.kubernetes.io/name: posts-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: auth
+      app: posts
   template:
     metadata:
       labels:
-        app: auth
+        app: posts
     spec:
       containers:
-        - name: auth
-          image: ghcr.io/eryx666/socialdev.io/auth
+        - name: posts
+          image: ghcr.io/eryx666/socialdev.io:posts
           env:
             - name: NATS_CLIENT_ID
               valueFrom:
@@ -38,12 +41,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: auth-srv
+  name: posts-srv
+  namespace: socialdev
+  labels:
+    app.kubernetes.io/name: posts-srv
 spec:
   selector:
-    app: auth
+    app: posts
   ports:
-    - name: auth
+    - name: posts
       protocol: TCP
       port: 3000
       targetPort: 3000

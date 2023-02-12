@@ -9,7 +9,7 @@ import { User } from "../models/user";
 
 const router = express.Router();
 
-// Route        ---> POST api/users/signin
+// Route        ---> POST api/auth/signin
 // Description  ---> Sign in a registered user
 // Access       ---> Public
 router.post(
@@ -47,6 +47,18 @@ router.post(
 		req.session = {
 			jwt: userJwt,
 		};
+
+		const date = new Date().toLocaleString();
+		console.log(date);
+
+		const checkFirstConnection = await existingUser.log.length;
+		if (checkFirstConnection <= 0) {
+			await existingUser.log.push({ date: date, firstConnection: true });
+			await existingUser.save();
+		} else {
+			await existingUser.log.push({ date: date });
+			await existingUser.save();
+		}
 
 		res.status(200).send(existingUser);
 	}

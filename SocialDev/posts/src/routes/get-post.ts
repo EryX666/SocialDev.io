@@ -11,7 +11,7 @@ const router = express.Router();
 router.get("/", requireAuth, async (req: Request, res: Response) => {
 	const posts = await Posts.find().sort({ date: -1 });
 
-	res.status(200).json(posts);
+	res.status(200).json({ posts: posts });
 });
 
 // Route        ---> GET api/posts/:post_id

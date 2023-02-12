@@ -22,6 +22,7 @@ interface UserDoc extends mongoose.Document {
 	password: string;
 	handle: string;
 	role: string;
+	log: [{}];
 }
 
 const userSchema = new mongoose.Schema(
@@ -45,6 +46,7 @@ const userSchema = new mongoose.Schema(
 			default: "BASIC",
 			enum: ["BASIC", "ADMIN"],
 		},
+		log: [],
 	},
 	{
 		timestamps: true,

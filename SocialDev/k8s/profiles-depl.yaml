@@ -1,20 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: posts-depl
+  name: profiles-depl
+  namespace: socialdev
+  labels:
+    app.kubernetes.io/name: profiles-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: posts
+      app: profiles
   template:
     metadata:
       labels:
-        app: posts
+        app: profiles
     spec:
       containers:
-        - name: posts
-          image: ghcr.io/eryx666/socialdev.io/posts
+        - name: profiles
+          image: ghcr.io/eryx666/socialdev.io:profiles
+
           env:
             - name: NATS_CLIENT_ID
               valueFrom:
@@ -38,12 +42,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: posts-srv
+  name: profiles-srv
+  namespace: socialdev
+  labels:
+    app.kubernetes.io/name: profiles-srv
 spec:
   selector:
-    app: posts
+    app: profiles
   ports:
-    - name: posts
+    - name: profiles
       protocol: TCP
       port: 3000
       targetPort: 3000

@@ -1,20 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: friends-depl
+  name: auth-depl
+  namespace: socialdev
+  labels:
+    app.kubernetes.io/name: auth-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: friends
+      app: auth
   template:
     metadata:
       labels:
-        app: friends
+        app: auth
     spec:
       containers:
-        - name: friends
-          image: ghcr.io/eryx666/socialdev.io/friends
+        - name: auth
+          image: ghcr.io/eryx666/socialdev.io:auth
           env:
             - name: NATS_CLIENT_ID
               valueFrom:
@@ -38,12 +41,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: friends-srv
+  name: auth-srv
+  namespace: socialdev
+  labels:
+    app.kubernetes.io/name: auth-srv
 spec:
   selector:
-    app: friends
+    app: auth
   ports:
-    - name: friends
+    - name: auth
       protocol: TCP
       port: 3000
       targetPort: 3000

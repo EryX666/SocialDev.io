@@ -1,20 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: profiles-depl
+  name: friends-depl
+  namespace: socialdev
+  labels:
+    app.kubernetes.io/name: friends-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: profiles
+      app: friends
   template:
     metadata:
       labels:
-        app: profiles
+        app: friends
     spec:
       containers:
-        - name: profiles
-          image: ghcr.io/eryx666/socialdev.io/profiles
+        - name: friends
+          image: ghcr.io/eryx666/socialdev.io:friends
           env:
             - name: NATS_CLIENT_ID
               valueFrom:
@@ -38,12 +41,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: profiles-srv
+  name: friends-srv
+  namespace: socialdev
+  labels:
+    app.kubernetes.io/name: friends-depl
 spec:
   selector:
-    app: profiles
+    app: friends
   ports:
-    - name: profiles
+    - name: friends
       protocol: TCP
       port: 3000
       targetPort: 3000

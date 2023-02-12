@@ -117,6 +117,7 @@ dist
 
 
 # Custom ignores
-front-end-workspace.code-workspace
+SocialDev.io-Workspace.code-workspace
 *.xml
 port-reminder
+client.code-workspace

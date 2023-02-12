@@ -19,6 +19,7 @@ app.use(morgan("short"));
 app.set("trust proxy", true);
 app.use(
 	cookieSession({
+		name: "session",
 		signed: false,
 		// Change secure in Production to 'true' to only send cookies on HTTPS
 		secure: false,

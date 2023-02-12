@@ -28,6 +28,20 @@ the Auth service manages everything that has to do with the authentication side 
 |		/signin				|		POST			|Signs a user in|		JWT user token						|
 |		/signout			|		POST			|Sign a user out|		null								|
 
+### Posts Service
+The Posts service handles the user posts, from creating a post, deleting posts, getting a list of posts by user and so on.
+
+``api/posts/*``
+
+|		Route				|		Type			|		Description		|		Returns								|
+|		:----------:		|		:------:		|		:------:		|		:-------:							|
+|		/create				|		POST			|Creates a new user post|		{sucess: true/false, newPost?}		|
+|		/:post_id/delete	|		DELETE			|	Delete a user post	|	{ success: true/false, deletedPost }	|
+|		/:post_id/edit		|		PUT				|	Edit a user post	|	{ success: true/false, updatedPost }	|
+|		/:post_id/like		|		POST			|Like/Unlike a user post|				{post}						|
+|		/:post_id			|		GET				|Get a post by its Id	|				{post}						|
+|		/					|		GET				|Gets all posts in DB	|				{posts}						|
+
 ### Comments Service
 The Comments service handles everything that has to di with comments, either on posts, likes on comments and embedded comments(comments on comments)
 
@@ -64,20 +78,6 @@ The Friends service handles the social aspect of the app, adding friends, removi
 |	/:user_id/friends_list	|	GET	|Get friends list by user_id|		[{friend1}, {friend2}] / [] 		|
 |	/sent_requests_list	|	GET	|Get current user sent friend-request list|		[{sentRequest1}, {sentRequest2}] / []		|
 |	/:user_id/received_requests_list	|	GET	|Get current user received friend-requests list|		[{receivedRequest1}, {receivedRequest2}] / []		|
-
-### Posts Service
-The Posts service handles the user posts, from creating a post, deleting posts, getting a list of posts by user and so on.
-
-``api/posts/*``
-
-|		Route				|		Type			|		Description		|		Returns								|
-|		:----------:		|		:------:		|		:------:		|		:-------:							|
-|		/create				|		POST			|Creates a new user post|		{sucess: true/false, newPost?}		|
-|		/:post_id/delete	|		DELETE			|	Delete a user post	|	{ success: true/false, deletedPost }	|
-|		/:post_id/edit		|		PUT				|	Edit a user post	|	{ success: true/false, updatedPost }	|
-|		/:post_id/like		|		POST			|Like/Unlike a user post|				{post}						|
-|		/:post_id			|		GET				|Get a post by its Id	|				{post}						|
-|		/					|		GET				|Gets all posts in DB	|				{posts}						|
 
 ### Profiles Service
 The Profiles service handles the user profile, editing the profile, and updating the profile info.

@@ -42,7 +42,7 @@ build:
             dest: .
       docker:
         dockerfile: Dockerfile
-    - image: pi.eryx.local:5000/client
+    - image: ghcr.io/eryx666/socialdev.io/client
       context: client
       sync:
         manual:
@@ -56,8 +56,6 @@ build:
             dest: .
       docker:
         dockerfile: Dockerfile
-  insecureRegistries:
-    - pi.eryx.local:5000/
   local:
     push: false
 # test:

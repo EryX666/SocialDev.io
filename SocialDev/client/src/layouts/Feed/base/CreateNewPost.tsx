@@ -102,7 +102,7 @@ const CreateNewPost: React.FC = () => {
 										</button>
 									</Dialog.Title>
 									<span className="w-full p-[1px] bg-gray-500"></span>
-									{/* <form
+									<form
 										onSubmit={handleSubmit}
 										className="flex flex-col justify-center"
 									>
@@ -116,7 +116,7 @@ const CreateNewPost: React.FC = () => {
 										<button className="bg-green-500" type="submit">
 											Submit
 										</button>
-									</form> */}
+									</form>
 								</Dialog.Panel>
 							</div>
 						</div>

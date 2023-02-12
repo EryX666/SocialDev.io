@@ -37,6 +37,7 @@ const start = async () => {
 		new PostDeletedListener(natsWrapper.client).listen();
 
 		await mongoose
+			.set("strictQuery", true)
 			.connect(MONGO_URI)
 			.then(() => console.log("Comments-Service: Connected to MongoDB"))
 			.catch((err) => {

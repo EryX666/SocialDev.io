@@ -2,6 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: client-depl
+  namespace: socialdev
+  labels:
+    app.kubernetes.io/name: client-depl
 spec:
   replicas: 1
   selector:
@@ -14,12 +17,16 @@ spec:
     spec:
       containers:
         - name: client
-          image: pi.eryx.local:5000/client
+          image: ghcr.io/eryx666/socialdev.io:client
+
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: client-srv
+  namespace: socialdev
+  labels:
+    app.kubernetes.io/name: client-srv
 spec:
   selector:
     app: client

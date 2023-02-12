@@ -35,6 +35,7 @@ const start = async () => {
 		new UserCreatedListener(natsWrapper.client).listen();
 
 		await mongoose
+			.set("strictQuery", true)
 			.connect(MONGO_URI)
 			.then(() => console.log("Friends-Service: Connected to MongoDB"))
 			.catch((err) => {

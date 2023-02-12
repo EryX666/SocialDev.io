@@ -40,6 +40,7 @@ const start = async () => {
 		new UserCreatedListener(natsWrapper.client).listen();
 
 		await mongoose
+			.set("strictQuery", true)
 			.connect(MONGO_URI)
 			.then(() =>
 				console.log(chalk.green("Profiles-Service: Connected to MongoDB"))

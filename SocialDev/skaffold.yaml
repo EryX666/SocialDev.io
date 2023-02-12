@@ -40,7 +40,6 @@ build:
         manual:
           - src: src/**/*.ts
             dest: .
-<<<<<<< HEAD
       docker:
         dockerfile: Dockerfile
     - image: ghcr.io/eryx666/socialdev.io/client
@@ -74,13 +73,3 @@ deploy:
 #             command: ["sh", "-c", "npm run test"]
 #             os: [darwin, linux]
 #             dir: ./auth
-=======
-    - image: pi.eryx.local:5000/client
-      context: client
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: "src/**/*.js"
-            dest: .
->>>>>>> main

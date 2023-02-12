@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        dir: ["auth", "comments", "friends", "posts", "profiles"]
+        dir: ["auth", "comments", "friends", "posts", "profiles", "client"]
     steps:
       - uses: actions/checkout@v2
       # Setup QEMU for ARM64 Build

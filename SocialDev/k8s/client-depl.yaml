@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: client
-          image: ghcr.io/eryx666/socialdev.io:client
+          image: ghcr.io/eryx666/socialdev.io/client
 
 ---
 apiVersion: v1

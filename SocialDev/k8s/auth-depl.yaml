@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: ghcr.io/eryx666/socialdev.io:auth
+          image: ghcr.io/eryx666/socialdev.io/auth
           env:
             - name: NATS_CLIENT_ID
               valueFrom:

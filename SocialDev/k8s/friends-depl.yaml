@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: friends
-          image: ghcr.io/eryx666/socialdev.io:friends
+          image: ghcr.io/eryx666/socialdev.io/friends
           env:
             - name: NATS_CLIENT_ID
               valueFrom:

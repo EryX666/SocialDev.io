@@ -1,11 +1,7 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { AuthContext } from "lib/authProvider";
 
-// import Modal from "react-bootstrap/Modal";
-// import Form from "react-bootstrap/Form";
-// import Button from "react-bootstrap/Button";
-
-const LoginModal: React.FC = (props) => {
+const LoginModal: React.FC = ({ props }) => {
 	const { currentUser, updateCurrentUser, signIn } = useContext(AuthContext);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");

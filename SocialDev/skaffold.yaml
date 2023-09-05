@@ -1,8 +1,19 @@
-apiVersion: skaffold/v4beta1
+apiVersion: skaffold/v4beta2
 kind: Config
+metadata:
+  name: socialdev.io
+deploy:
+  kubectl: {}
+manifests:
+  rawYaml:
+    - ./k8s/*.yaml
 build:
+  # insecureRegistries:
+  #   - pi.eryx.local:5000/
+  local:
+    push: true
   artifacts:
-    - image: ghcr.io/eryx666/socialdev.io/auth
+    - image: ghcr.io/omer-bar/socialdev.io/auth
       context: auth
       sync:
         manual:
@@ -10,7 +21,8 @@ build:
             dest: .
       docker:
         dockerfile: Dockerfile
-    - image: ghcr.io/eryx666/socialdev.io/profiles
+
+    - image: ghcr.io/omer-bar/socialdev.io/profiles
       context: profiles
       sync:
         manual:
@@ -18,7 +30,8 @@ build:
             dest: .
       docker:
         dockerfile: Dockerfile
-    - image: ghcr.io/eryx666/socialdev.io/posts
+
+    - image: ghcr.io/omer-bar/socialdev.io/posts
       context: posts
       sync:
         manual:
@@ -26,7 +39,8 @@ build:
             dest: .
       docker:
         dockerfile: Dockerfile
-    - image: ghcr.io/eryx666/socialdev.io/comments
+
+    - image: ghcr.io/omer-bar/socialdev.io/comments
       context: comments
       sync:
         manual:
@@ -34,7 +48,8 @@ build:
             dest: .
       docker:
         dockerfile: Dockerfile
-    - image: ghcr.io/eryx666/socialdev.io/friends
+
+    - image: ghcr.io/omer-bar/socialdev.io/friends
       context: friends
       sync:
         manual:
@@ -42,7 +57,8 @@ build:
             dest: .
       docker:
         dockerfile: Dockerfile
-    - image: ghcr.io/eryx666/socialdev.io/client
+
+    - image: ghcr.io/omer-bar/socialdev.io/client
       context: client
       sync:
         manual:
@@ -56,17 +72,15 @@ build:
             dest: .
       docker:
         dockerfile: Dockerfile
-  local:
-    push: false
 # test:
-#   - image: ghcr.io/eryx666/socialdev.io/auth
+#   - image: ghcr.io/omer-bar/socialdev.io/auth
 #     context: auth
 #     custom:
 #       - command: npm run test
 #         timeoutSeconds: 10
 
-deploy:
-  kubectl: {}
+# deploy:
+#   kubectl: {}
 #     hooks:
 #       before:
 #         - host:

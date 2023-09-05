@@ -59,12 +59,14 @@ function AuthDialog() {
 								<Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
 									{formToShow.login ? (
 										<LoginModal
+											// @ts-ignore
 											show={formToShow.login}
 											switchForms={switchForms}
 											onClose={() => setModalShow(false)}
 										/>
 									) : (
 										<RegisterModal
+											// @ts-ignore
 											show={formToShow.register}
 											switchForms={switchForms}
 											onClose={() => setModalShow(false)}

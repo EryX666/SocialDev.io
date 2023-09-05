@@ -10,6 +10,7 @@ const RegisterModal: React.FC = (props) => {
 
 	const handleRegister = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
+		// @ts-ignore
 		const mutateResult = register.mutate({ email, password });
 		if (mutateResult) {
 			const { status, mutate } = mutateResult;
@@ -18,6 +19,7 @@ const RegisterModal: React.FC = (props) => {
 			} else if (status === "error") {
 				// show an error message to the user
 			} else if (status === "success") {
+				// @ts-ignore
 				// close the modal and update the current user
 				updateCurrentUser(props.onClose);
 			}
@@ -32,7 +34,7 @@ const RegisterModal: React.FC = (props) => {
 				<button
 					type="button"
 					className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
-					data-modal-toggle="authentication-modal"
+					data-modal-toggle="authentication-modal" // @ts-ignore
 					onClick={() => props.onClose()}
 					ref={cancelButtonRef}
 				>
@@ -110,7 +112,8 @@ const RegisterModal: React.FC = (props) => {
 								required
 							/>
 						</div>
-						{errors}
+
+						{/* {error} */}
 
 						<button
 							type="submit"
@@ -123,6 +126,7 @@ const RegisterModal: React.FC = (props) => {
 							<a
 								href="/"
 								className="text-blue-700 hover:underline dark:text-blue-500"
+								// @ts-ignore
 								onClick={(e) => props.switchForms()}
 							>
 								Login

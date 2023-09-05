@@ -4,6 +4,7 @@ import cookieSession from "cookie-session";
 import cors from "cors";
 import { json } from "body-parser";
 import morgan from "morgan";
+import compression from "compression";
 import { errorHandler, NotFoundError, currentUser } from "socialdev-common";
 
 import { CreatePostRouter } from "./routes/create-post";
@@ -18,6 +19,7 @@ const app = express();
 app.use(cors());
 app.use(json());
 app.use(morgan("short"));
+app.use(compression());
 app.set("trust proxy", true);
 app.use(
 	cookieSession({

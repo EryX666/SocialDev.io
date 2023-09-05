@@ -1,0 +1,68 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: socialdev-srv
+  namespace: socialdev
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`socialdev.local.eryx.pro`) && PathPrefix(`/api/auth/`)
+      priority: 15
+      services:
+        - kind: Service
+          name: auth-srv
+          namespace: socialdev
+          port: 3000
+    - kind: Rule
+      match: Host(`socialdev.local.eryx.pro`) && PathPrefix(`/api/profile/`)
+      priority: 15
+      services:
+        - kind: Service
+          name: profiles-srv
+          namespace: socialdev
+          port: 3000
+    - kind: Rule
+      match: Host(`socialdev.local.eryx.pro`) && PathPrefix(`/api/posts/`)
+      priority: 15
+      services:
+        - kind: Service
+          name: posts-srv
+          namespace: socialdev
+          port: 3000
+    - kind: Rule
+      match: Host(`socialdev.local.eryx.pro`) && PathPrefix(`/api/post-comments/`)
+      priority: 15
+      services:
+        - kind: Service
+          name: comments-srv
+          namespace: socialdev
+          port: 3000
+    - kind: Rule
+      match: Host(`socialdev.local.eryx.pro`) && PathPrefix(`/api/friends/`)
+      priority: 15
+      services:
+        - kind: Service
+          name: friends-srv
+          namespace: socialdev
+          port: 3000
+    - kind: Rule
+      match: Host(`socialdev.local.eryx.pro`) && PathPrefix(`/api/auth/`)
+      priority: 15
+      services:
+        - kind: Service
+          name: auth-srv
+          namespace: socialdev
+          port: 3000
+    - kind: Rule
+      match: Host(`socialdev.local.eryx.pro`)
+      priority: 10
+      services:
+        - kind: Service
+          name: client-srv
+          namespace: socialdev
+          port: 3000
+  tls:
+    secretName: eryx-pro-tls

@@ -40,12 +40,13 @@ export function AuthProvider({ children }: any): JSX.Element {
 	const [currentUser, setCurrentUser] = useState<currentUser | null>();
 	const logger = queryClient.getLogger();
 
-	// // check for cookies of session
-	// if (Cookies.get("session")) {
-	// console.log("session cookie found");
-	// } else {
-	// 	console.log("no session cookie found");
-	// }
+	// check for cookies of session
+	if (Cookies.get("session")) {
+		console.log("session cookie found");
+	} else {
+		console.log("no session cookie found");
+		console.log("checking for cookies of session");
+	}
 
 	const { data, refetch } = useQuery(
 		["currentUser-query"],
@@ -69,6 +70,7 @@ export function AuthProvider({ children }: any): JSX.Element {
 		refetch().then((data) => {
 			logger.log(data);
 			if (!data.error) {
+				// @ts-ignore
 				const { currentUser } = data;
 				setCurrentUser(currentUser);
 			} else {
@@ -159,6 +161,6 @@ export function AuthProvider({ children }: any): JSX.Element {
 	AuthContext.displayName = "AuthContext";
 
 	console.log("inside auth context: ", currentUser);
-
+	// @ts-ignore
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

@@ -1,11 +1,8 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { AuthContext } from "lib/authProvider";
 
-// import Modal from "react-bootstrap/Modal";
-// import Form from "react-bootstrap/Form";
-// import Button from "react-bootstrap/Button";
-
-const LoginModal: React.FC = (props) => {
+// @ts-ignore
+const LoginModal: React.FC = ({ props }) => {
 	const { currentUser, updateCurrentUser, signIn } = useContext(AuthContext);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -13,6 +10,7 @@ const LoginModal: React.FC = (props) => {
 
 	const handleSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
+		// @ts-ignore
 		const mutateResult = signIn.mutate({ email, password });
 		if (mutateResult) {
 			const { status, mutate } = mutateResult;

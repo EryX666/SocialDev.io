@@ -11,15 +11,18 @@ const rtf = new Intl.RelativeTimeFormat("en", {
 	style: "long",
 	numeric: "auto",
 });
-
+// @ts-ignore
 export function getRelativeTime(d1, d2 = new Date()) {
 	if (typeof d1 === "string") d1 = new Date(d1);
+	// @ts-ignore
 	const elapsed = d1 - d2;
 
 	// "Math.abs" accounts for both "past" & "future" scenarios
 	for (const u in units) {
+		// @ts-ignore
 		if (Math.abs(elapsed) >= units[u] || u === "second") {
-			const elapsedUnits = Math.round(elapsed / units[u]);
+			// @ts-ignore
+			const elapsedUnits = Math.round(elapsed / units[u]); // @ts-ignore
 			const relativeTimeFormat = rtf.format(elapsedUnits, u);
 			const tooltipDate = d1.toLocaleString("en-US", {
 				weekday: "long",

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+// @ts-ignore
 import { authSelector } from "stateStore/slices/authSlice";
+// @ts-ignore
 import useRequest from "hooks/use-request";
 
 import Avatar from "@mui/material/Avatar";
@@ -8,8 +10,9 @@ import Stack from "@mui/material/Stack";
 import IconButton from "@mui/material/IconButton";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-
+// @ts-ignore
 function NavbarAvatar(props) {
+	// @ts-ignore
 	const { loggedIn } = useSelector(authSelector);
 	const [anchorEl, setAnchorEl] = useState(null);
 
@@ -18,7 +21,7 @@ function NavbarAvatar(props) {
 		method: "post",
 		body: {},
 	});
-
+	// @ts-ignore
 	const handleMenu = (event) => {
 		setAnchorEl(event.currentTarget);
 	};

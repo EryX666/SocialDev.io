@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useContext } from "react";
 import { AuthContext } from "lib/authProvider";
 import { Menu, Transition } from "@headlessui/react";
 import { BellIcon } from "@heroicons/react/24/outline";
-
+// @ts-ignore
 function classNames(...classes) {
 	return classes.filter(Boolean).join(" ");
 }
@@ -112,6 +112,7 @@ const LoggedInNavbar: React.FC = () => {
 									)}
 									onClick={(event) => {
 										event.preventDefault();
+										// @ts-ignore
 										signOut.mutate();
 									}}
 								>

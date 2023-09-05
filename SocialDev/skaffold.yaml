@@ -13,7 +13,7 @@ build:
   local:
     push: true
   artifacts:
-    - image: ghcr.io/eryx666/socialdev.io/auth
+    - image: ghcr.io/omer-bar/socialdev.io/auth
       context: auth
       sync:
         manual:
@@ -22,7 +22,7 @@ build:
       docker:
         dockerfile: Dockerfile
 
-    - image: ghcr.io/eryx666/socialdev.io/profiles
+    - image: ghcr.io/omer-bar/socialdev.io/profiles
       context: profiles
       sync:
         manual:
@@ -31,7 +31,7 @@ build:
       docker:
         dockerfile: Dockerfile
 
-    - image: ghcr.io/eryx666/socialdev.io/posts
+    - image: ghcr.io/omer-bar/socialdev.io/posts
       context: posts
       sync:
         manual:
@@ -40,7 +40,7 @@ build:
       docker:
         dockerfile: Dockerfile
 
-    - image: ghcr.io/eryx666/socialdev.io/comments
+    - image: ghcr.io/omer-bar/socialdev.io/comments
       context: comments
       sync:
         manual:
@@ -49,7 +49,7 @@ build:
       docker:
         dockerfile: Dockerfile
 
-    - image: ghcr.io/eryx666/socialdev.io/friends
+    - image: ghcr.io/omer-bar/socialdev.io/friends
       context: friends
       sync:
         manual:
@@ -58,7 +58,7 @@ build:
       docker:
         dockerfile: Dockerfile
 
-    - image: ghcr.io/eryx666/socialdev.io/client
+    - image: ghcr.io/omer-bar/socialdev.io/client
       context: client
       sync:
         manual:
@@ -73,7 +73,7 @@ build:
       docker:
         dockerfile: Dockerfile
 # test:
-#   - image: ghcr.io/eryx666/socialdev.io/auth
+#   - image: ghcr.io/omer-bar/socialdev.io/auth
 #     context: auth
 #     custom:
 #       - command: npm run test

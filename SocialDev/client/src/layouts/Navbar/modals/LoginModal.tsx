@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { AuthContext } from "lib/authProvider";
 
+// @ts-ignore
 const LoginModal: React.FC = ({ props }) => {
 	const { currentUser, updateCurrentUser, signIn } = useContext(AuthContext);
 	const [email, setEmail] = useState("");
@@ -9,6 +10,7 @@ const LoginModal: React.FC = ({ props }) => {
 
 	const handleSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
+		// @ts-ignore
 		const mutateResult = signIn.mutate({ email, password });
 		if (mutateResult) {
 			const { status, mutate } = mutateResult;

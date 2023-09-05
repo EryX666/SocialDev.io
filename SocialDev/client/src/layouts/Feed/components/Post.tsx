@@ -1,6 +1,6 @@
 import React /*, { useEffect } */ from "react";
 import { getRelativeTime } from "utils/time";
-
+// @ts-ignore
 const Post = ({ post }) => {
 	const { handle, createdAt, text } = post;
 	// 	const { handle, createdAt, likes, text, updatedAt, user } = post;
@@ -25,7 +25,7 @@ const Post = ({ post }) => {
 					</div>
 					<div className="">
 						<span className="text-[13px] font-normal leading-4 break-words text-start text-gray-500">
-							{createdAtRelative.visible}
+							{createdAtRelative?.visible}
 						</span>
 					</div>
 				</div>

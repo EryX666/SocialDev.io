@@ -11,7 +11,7 @@ build:
   # insecureRegistries:
   #   - pi.eryx.local:5000/
   local:
-    push: true
+    push: false
   artifacts:
     - image: ghcr.io/omer-bar/socialdev.io/auth
       context: auth

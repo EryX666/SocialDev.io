@@ -18,7 +18,8 @@ spec:
       containers:
         - name: comments
           image: ghcr.io/omer-bar/socialdev.io/comments
-          imagePullPolicy: Always
+          
+         
           env:
             - name: NATS_CLIENT_ID
               valueFrom:

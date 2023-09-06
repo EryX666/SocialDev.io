@@ -8,10 +8,12 @@ manifests:
   rawYaml:
     - ./k8s/*.yaml
 build:
+  tagPolicy:
+    gitCommit: {}
   # insecureRegistries:
   #   - pi.eryx.local:5000/
   local:
-    push: false
+    push: true
   artifacts:
     - image: ghcr.io/omer-bar/socialdev.io/auth
       context: auth

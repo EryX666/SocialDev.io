@@ -18,7 +18,6 @@ spec:
       containers:
         - name: profiles
           image: ghcr.io/omer-bar/socialdev.io/profiles
-          
           env:
             - name: NATS_CLIENT_ID
               valueFrom:

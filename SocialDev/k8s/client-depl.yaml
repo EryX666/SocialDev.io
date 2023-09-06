@@ -18,8 +18,6 @@ spec:
       containers:
         - name: client
           image: ghcr.io/omer-bar/socialdev.io/client
-          
-
       imagePullSecrets:
         - name: ghcr-secret
 

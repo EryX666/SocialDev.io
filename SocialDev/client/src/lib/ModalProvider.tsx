@@ -1,12 +1,13 @@
 import React, {
 	useContext,
 	useState,
-	useRef,
 	ReactNode,
 	CSSProperties,
 	createContext,
 } from "react";
 import ReactDOM from "react-dom";
+import Modal from "components/Modals/base";
+import { Transition } from "@headlessui/react";
 
 interface ModalProviderProps {
 	children: ReactNode;
@@ -36,7 +37,9 @@ const defaultModalProps: ModalProps = {
 	onClose: () => {},
 };
 
-const ModalContext = createContext<ModalContextProps | undefined>(undefined);
+export const ModalContext = createContext<ModalContextProps | undefined>(
+	undefined,
+);
 
 export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
 	const [isVisible, setIsVisible] = useState(false);
@@ -44,6 +47,8 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
 
 	const showModal = () => setIsVisible(true);
 	const hideModal = () => setIsVisible(false);
+
+	console.log("Modal is visible:", isVisible);
 
 	return (
 		<ModalContext.Provider
@@ -57,7 +62,17 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
 			{children}
 			{isVisible &&
 				ReactDOM.createPortal(
-					<Modal {...modalProps} onClose={hideModal} />,
+					<Transition
+						appear
+						show={isVisible}
+						enter="ease-out duration-600"
+						enterFrom="opacity-0"
+						enterTo="opacity-100"
+						leave="ease-in duration-200"
+						leaveFrom="opacity-100"
+						leaveTo="opacity-0">
+						<Modal {...modalProps} onClose={hideModal} />
+					</Transition>,
 					document.body,
 				)}
 		</ModalContext.Provider>
@@ -70,48 +85,4 @@ export const useModal = () => {
 		throw new Error("useModal must be used within a ModalProvider");
 	}
 	return context;
-};
-
-const Modal: React.FC<ModalProps & { onClose: () => void }> = ({
-	title,
-	content,
-	size,
-	style,
-	onClose,
-}) => {
-	const handleClickOutside = (e: React.MouseEvent<HTMLDivElement>) => {
-		if (e.target === e.currentTarget) {
-			onClose();
-		}
-	};
-
-	let modalSizeClass;
-	switch (size) {
-		case "sm":
-			modalSizeClass = "max-w-sm";
-			break;
-		case "md":
-			modalSizeClass = "max-w-md";
-			break;
-		case "lg":
-			modalSizeClass = "max-w-lg";
-			break;
-		case "xl":
-			modalSizeClass = "max-w-xl";
-			break;
-		default:
-			modalSizeClass = "max-w-md";
-	}
-
-	return (
-		<div className="modal-overlay" onClick={handleClickOutside}>
-			<div className={`modal modal-${size}`} style={style}>
-				{title && <div className="modal-header">{title}</div>}
-				<div className="modal-content">{content}</div>
-				<div className="modal-footer">
-					<button onClick={onClose}>Close</button>
-				</div>
-			</div>
-		</div>
-	);
 };

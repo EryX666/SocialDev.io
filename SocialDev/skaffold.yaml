@@ -1,4 +1,10 @@
-apiVersion: skaffold/v4beta2
+.common_config: &common
+  sync:
+    manual:
+      - src: src/**/*.ts
+        dest: .
+
+apiVersion: skaffold/v4beta6
 kind: Config
 metadata:
   name: socialdev.io
@@ -9,7 +15,7 @@ manifests:
     - ./k8s/*.yaml
 build:
   tagPolicy:
-    gitCommit: {}
+    sha256: {}
   # insecureRegistries:
   #   - pi.eryx.local:5000/
   local:
@@ -17,48 +23,23 @@ build:
   artifacts:
     - image: ghcr.io/omer-bar/socialdev.io/auth
       context: auth
-      sync:
-        manual:
-          - src: src/**/*.ts
-            dest: .
-      docker:
-        dockerfile: Dockerfile
+      <<: *common
 
     - image: ghcr.io/omer-bar/socialdev.io/profiles
       context: profiles
-      sync:
-        manual:
-          - src: src/**/*.ts
-            dest: .
-      docker:
-        dockerfile: Dockerfile
+      <<: *common
 
     - image: ghcr.io/omer-bar/socialdev.io/posts
       context: posts
-      sync:
-        manual:
-          - src: src/**/*.ts
-            dest: .
-      docker:
-        dockerfile: Dockerfile
+      <<: *common
 
     - image: ghcr.io/omer-bar/socialdev.io/comments
       context: comments
-      sync:
-        manual:
-          - src: src/**/*.ts
-            dest: .
-      docker:
-        dockerfile: Dockerfile
+      <<: *common
 
     - image: ghcr.io/omer-bar/socialdev.io/friends
       context: friends
-      sync:
-        manual:
-          - src: src/**/*.ts
-            dest: .
-      docker:
-        dockerfile: Dockerfile
+      <<: *common
 
     - image: ghcr.io/omer-bar/socialdev.io/client
       context: client
@@ -74,18 +55,3 @@ build:
             dest: .
       docker:
         dockerfile: Dockerfile
-# test:
-#   - image: ghcr.io/omer-bar/socialdev.io/auth
-#     context: auth
-#     custom:
-#       - command: npm run test
-#         timeoutSeconds: 10
-
-# deploy:
-#   kubectl: {}
-#     hooks:
-#       before:
-#         - host:
-#             command: ["sh", "-c", "npm run test"]
-#             os: [darwin, linux]
-#             dir: ./auth

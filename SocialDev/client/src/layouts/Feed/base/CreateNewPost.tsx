@@ -1,32 +1,33 @@
 import React, {
-	useState,
-	Fragment,
+	// useState,
+	// Fragment,
 	useContext,
-	useEffect,
-	useRef,
+	// useEffect,
+	// useRef,
 } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import { useCreateNewPost } from "services/internal/postQueries";
+// import { Dialog, Transition } from "@headlessui/react";
+// import { useCreateNewPost } from "services/internal/postQueries";
 import Avatar from "components/user/Avatar";
 import { AuthContext } from "lib/authProvider";
-import DialogBox from "components/DialogBox/DialogBox";
+// import DialogBox from "components/DialogBox/DialogBox";
 import { useModal } from "lib/ModalProvider";
+import CreateNewPostModal from "components/Modals/CreateNewPost/CreateNewPostModal";
 
 const CreateNewPost: React.FC = () => {
 	const { showModal, setModalProps } = useModal();
 	const { currentUser } = useContext(AuthContext);
-	const [isOpen, setIsOpen] = useState<boolean>(false);
-	const [postText, setPostText] = useState<string>("");
-	const mutation = useCreateNewPost();
-	const cancelButtonRef = useRef(null);
+	// const [isOpen, setIsOpen] = useState<boolean>(false);
+	// const [postText, setPostText] = useState<string>("");
+	// const mutation = useCreateNewPost();
+	// const cancelButtonRef = useRef(null);
 
 	const openCustomModal = () => {
 		setModalProps({
 			title: <span>New Post</span>,
-			content: <div>My Content</div>,
-			size: "lg",
-			style: { backgroundColor: "red" },
-			onClose: () => setIsOpen(false),
+			content: <CreateNewPostModal />,
+			size: "sm",
+			style: {},
+			onClose: () => {},
 		});
 		showModal();
 	};
